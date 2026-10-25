@@ -1,0 +1,10 @@
+{
+  "id": "nexnote",
+  "name": "NexNote",
+  "version": "0.1.0",
+  "minAppVersion": "1.5.0",
+  "description": "面向学习场景的 AI 笔记插件：保留教材原始排版，叠加 AI 知识标注与层级知识卡片。",
+  "author": "Rnau0",
+  "authorUrl": "https://github.com/Rnau0",
+  "isDesktopOnly": false
+}

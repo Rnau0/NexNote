@@ -1,0 +1,633 @@
+/* ==========================================================================
+   NexNote — 样式
+   全部使用 Obsidian 主题变量，自动跟随明暗主题；含移动端触控适配。
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- 变量 */
+
+.nexnote-sidebar {
+  --nexnote-chat-font-family: var(--font-text);
+  --nexnote-chat-font-size: 15px;
+  --nexnote-chat-line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0;
+  gap: 0;
+}
+
+/* ---------------------------------------------------------------- 顶部 */
+
+.nexnote-header {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4-2);
+  padding: var(--size-4-2) var(--size-4-3);
+  border-bottom: 1px solid var(--background-modifier-border);
+  flex: 0 0 auto;
+}
+
+.nexnote-title {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4-1);
+  font-weight: var(--font-semibold);
+  color: var(--text-normal);
+  white-space: nowrap;
+}
+
+.nexnote-title-icon {
+  display: flex;
+  color: var(--text-accent);
+}
+
+.nexnote-title-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.nexnote-badge {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: right;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+}
+
+.nexnote-actions {
+  display: flex;
+  gap: 2px;
+  flex: 0 0 auto;
+}
+
+.nexnote-icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-s);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.nexnote-icon-button:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.nexnote-icon-button svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* ---------------------------------------------------------------- 对话区 */
+
+.nexnote-transcript {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: var(--size-4-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4-3);
+  font-family: var(--nexnote-chat-font-family, var(--font-text));
+  font-size: var(--nexnote-chat-font-size, 15px);
+  line-height: var(--nexnote-chat-line-height, 1.6);
+}
+
+.nexnote-transcript--compact {
+  flex: 0 1 auto;
+  max-height: 240px;
+  padding: var(--size-4-2) 0 0;
+}
+
+.nexnote-empty {
+  margin: auto;
+  text-align: center;
+  color: var(--text-faint);
+  padding: var(--size-4-6) var(--size-4-4);
+  white-space: pre-line;
+}
+
+.nexnote-empty-title {
+  font-size: 1.1em;
+  font-weight: var(--font-semibold);
+  color: var(--text-muted);
+  margin-bottom: var(--size-4-2);
+}
+
+.nexnote-empty-body {
+  font-size: var(--font-ui-smaller);
+  line-height: 1.7;
+}
+
+.nexnote-msg {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4-1);
+  max-width: 100%;
+}
+
+.nexnote-msg--user {
+  align-items: flex-end;
+}
+
+.nexnote-msg-body {
+  padding: var(--size-4-2) var(--size-4-3);
+  border-radius: var(--radius-m);
+  background: var(--background-secondary);
+  color: var(--text-normal);
+  overflow-wrap: anywhere;
+}
+
+.nexnote-msg--user .nexnote-msg-body {
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  border-bottom-right-radius: var(--radius-s);
+}
+
+.nexnote-msg--assistant .nexnote-msg-body {
+  background: var(--background-primary-alt);
+  border: 1px solid var(--background-modifier-border);
+  border-bottom-left-radius: var(--radius-s);
+}
+
+.nexnote-msg--failed .nexnote-msg-body {
+  background: var(--background-modifier-error);
+  border-color: var(--background-modifier-error);
+  color: var(--text-normal);
+}
+
+.nexnote-msg-body > :first-child {
+  margin-top: 0;
+}
+
+.nexnote-msg-body > :last-child {
+  margin-bottom: 0;
+}
+
+.nexnote-msg-body pre {
+  overflow-x: auto;
+  font-size: 0.9em;
+}
+
+/* 消息里引用的原文 */
+
+.nexnote-msg-quotes {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 100%;
+}
+
+.nexnote-quote {
+  font-size: 0.85em;
+  color: var(--text-muted);
+  border-left: 2px solid var(--text-accent);
+  padding-left: var(--size-4-2);
+  overflow-wrap: anywhere;
+}
+
+/* 消息底部工具 */
+
+.nexnote-msg-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4-2);
+  opacity: 0;
+  transition: opacity 120ms ease-in-out;
+}
+
+.nexnote-msg:hover .nexnote-msg-meta,
+.nexnote-msg:focus-within .nexnote-msg-meta {
+  opacity: 1;
+}
+
+.nexnote-msg-time {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+}
+
+.nexnote-link-button {
+  border: none;
+  background: transparent;
+  color: var(--text-accent);
+  font-size: var(--font-ui-smaller);
+  padding: 0;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.nexnote-link-button:hover {
+  text-decoration: underline;
+}
+
+/* ---------------------------------------------------------------- 输入区 */
+
+.nexnote-composer-host {
+  flex: 0 0 auto;
+  padding: var(--size-4-2) var(--size-4-3) var(--size-4-3);
+  border-top: 1px solid var(--background-modifier-border);
+  background: var(--background-primary);
+}
+
+.nexnote-composer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4-1);
+}
+
+.nexnote-quotes {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.nexnote-quotes.is-hidden {
+  display: none;
+}
+
+.nexnote-quote-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4-1);
+  padding: 2px var(--size-4-2);
+  border-radius: var(--radius-s);
+  background: var(--background-secondary);
+  border-left: 2px solid var(--text-accent);
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+}
+
+.nexnote-quote-chip-text {
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nexnote-quote-chip-remove {
+  flex: 0 0 auto;
+  border: none;
+  background: transparent;
+  color: var(--text-faint);
+  cursor: pointer;
+  padding: 0 2px;
+  font-size: 1em;
+  box-shadow: none;
+}
+
+.nexnote-quote-chip-remove:hover {
+  color: var(--text-error);
+}
+
+.nexnote-composer-row {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--size-4-2);
+}
+
+.nexnote-composer-input {
+  flex: 1 1 auto;
+  min-height: 28px;
+  max-height: 180px;
+  resize: none;
+  padding: var(--size-4-2);
+  border-radius: var(--radius-s);
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-primary);
+  color: var(--text-normal);
+  font-family: inherit;
+  font-size: var(--nexnote-chat-font-size, 15px);
+  line-height: 1.45;
+}
+
+.nexnote-composer-input:focus {
+  border-color: var(--interactive-accent);
+  box-shadow: 0 0 0 1px var(--interactive-accent);
+}
+
+.nexnote-send {
+  flex: 0 0 auto;
+  height: 32px;
+  padding: 0 var(--size-4-3);
+  border-radius: var(--radius-s);
+  border: none;
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  font-size: var(--font-ui-smaller);
+  cursor: pointer;
+}
+
+.nexnote-send:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.nexnote-composer-hint {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+  text-align: right;
+}
+
+/* ---------------------------------------------------------------- 卡片弹窗 */
+
+.nexnote-card-modal {
+  --nexnote-chat-font-size: 15px;
+  --nexnote-chat-line-height: 1.6;
+  max-width: 720px;
+}
+
+.nexnote-card-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4-1);
+  margin-bottom: var(--size-4-2);
+}
+
+.nexnote-card-path {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+}
+
+.nexnote-card-title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4-2);
+}
+
+.nexnote-card-branch {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  background: var(--background-secondary);
+  padding: 1px var(--size-4-2);
+  border-radius: var(--radius-s);
+}
+
+.nexnote-card-status {
+  font-size: var(--font-ui-smaller);
+  padding: 1px var(--size-4-2);
+  border-radius: var(--radius-s);
+  border: 1px solid var(--background-modifier-border);
+  color: var(--text-faint);
+}
+
+.nexnote-card-status--confirmed {
+  color: var(--text-success);
+  border-color: var(--text-success);
+}
+
+.nexnote-card-question {
+  font-size: 1.15em;
+  font-weight: var(--font-semibold);
+  color: var(--text-normal);
+  line-height: 1.4;
+  margin-bottom: var(--size-4-2);
+}
+
+.nexnote-card-answer {
+  font-family: var(--nexnote-chat-font-family, var(--font-text));
+  font-size: var(--nexnote-chat-font-size, 15px);
+  line-height: var(--nexnote-chat-line-height, 1.6);
+  color: var(--text-normal);
+  background: var(--background-primary-alt);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  padding: var(--size-4-3);
+  overflow-wrap: anywhere;
+}
+
+.nexnote-card-answer > :first-child {
+  margin-top: 0;
+}
+
+.nexnote-card-answer > :last-child {
+  margin-bottom: 0;
+}
+
+.nexnote-card-quotes {
+  margin-top: var(--size-4-2);
+}
+
+.nexnote-card-section-title {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+  text-transform: none;
+  margin: var(--size-4-2) 0 var(--size-4-1);
+}
+
+.nexnote-card-quote {
+  font-size: 0.9em;
+  color: var(--text-muted);
+  border-left: 2px solid var(--text-accent);
+  padding-left: var(--size-4-2);
+  margin-bottom: 2px;
+  overflow-wrap: anywhere;
+}
+
+.nexnote-card-children {
+  margin-top: var(--size-4-1);
+}
+
+.nexnote-card-child-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nexnote-card-child {
+  display: flex;
+  align-items: baseline;
+  gap: var(--size-4-2);
+  padding: 2px var(--size-4-2);
+  border-radius: var(--radius-s);
+  cursor: pointer;
+}
+
+.nexnote-card-child:hover {
+  background: var(--background-modifier-hover);
+}
+
+.nexnote-card-child-label {
+  flex: 0 0 auto;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+}
+
+.nexnote-card-child-text {
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+}
+
+.nexnote-card-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--size-4-2);
+  margin: var(--size-4-3) 0;
+  padding-top: var(--size-4-2);
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+.nexnote-button {
+  height: 30px;
+  padding: 0 var(--size-4-3);
+  border-radius: var(--radius-s);
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-secondary);
+  color: var(--text-normal);
+  font-size: var(--font-ui-smaller);
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.nexnote-button:hover {
+  background: var(--background-modifier-hover);
+}
+
+.nexnote-button--accent {
+  border-color: var(--interactive-accent);
+  color: var(--text-accent);
+}
+
+.nexnote-button--danger {
+  color: var(--text-error);
+  border-color: var(--background-modifier-error);
+}
+
+.nexnote-card-origin {
+  margin-left: auto;
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+}
+
+.nexnote-card-chat {
+  border-top: 1px solid var(--background-modifier-border);
+  padding-top: var(--size-4-2);
+}
+
+.nexnote-card-chat-title {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+}
+
+.nexnote-card-chat .nexnote-composer-host {
+  border-top: none;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+
+/* ---------------------------------------------------------------- 卡片库 */
+
+.nexnote-browser-modal {
+  max-width: 640px;
+}
+
+.nexnote-browser-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.nexnote-browser-item {
+  padding: var(--size-4-2);
+  border-radius: var(--radius-s);
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.nexnote-browser-item:hover {
+  background: var(--background-modifier-hover);
+  border-color: var(--background-modifier-border);
+}
+
+.nexnote-browser-question {
+  color: var(--text-normal);
+  font-size: var(--font-ui-small);
+  overflow-wrap: anywhere;
+}
+
+.nexnote-browser-meta {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+  margin-top: 2px;
+}
+
+/* ---------------------------------------------------------------- 设置 */
+
+.nexnote-muted {
+  color: var(--text-faint);
+  font-size: var(--font-ui-smaller);
+}
+
+.nexnote-warning {
+  color: var(--text-error);
+  font-size: var(--font-ui-smaller);
+}
+
+/* ---------------------------------------------------------------- 移动端 */
+
+body.is-mobile .nexnote-header,
+body.is-mobile .nexnote-composer-host {
+  padding-left: var(--size-4-4);
+  padding-right: var(--size-4-4);
+}
+
+body.is-mobile .nexnote-icon-button {
+  width: 34px;
+  height: 34px;
+}
+
+body.is-mobile .nexnote-send {
+  height: 38px;
+  padding: 0 var(--size-4-4);
+}
+
+body.is-mobile .nexnote-composer-input {
+  font-size: max(16px, var(--nexnote-chat-font-size, 15px)); /* 避免 iOS 聚焦缩放 */
+}
+
+body.is-mobile .nexnote-msg-meta {
+  opacity: 1; /* 触屏没有 hover */
+}
+
+body.is-mobile .nexnote-card-modal,
+body.is-mobile .nexnote-browser-modal {
+  max-width: 100%;
+  width: 100%;
+}
+
+body.is-mobile .nexnote-button {
+  height: 34px;
+}
+
+@media (max-width: 480px) {
+  .nexnote-actions {
+    gap: 0;
+  }
+
+  .nexnote-card-toolbar {
+    gap: var(--size-4-1);
+  }
+
+  .nexnote-card-origin {
+    margin-left: 0;
+    flex-basis: 100%;
+  }
+}

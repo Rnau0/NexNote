@@ -1,0 +1,39 @@
+# ---- 依赖 ----
+node_modules/
+.pnpm-store/
+
+# ---- 构建产物 ----
+# Obsidian 插件运行时只需要 main.js（另加 manifest.json 与 styles.css）
+main.js
+main.js.map
+*.map
+dist/
+build/
+coverage/
+
+# ---- 本地缓存（本仓库刻意把 npm 缓存放在 E 盘仓库内，避免占用 C 盘）----
+.npm-cache/
+.tmp/
+
+# ---- 隐私：绝不提交 API Key / 个人数据 / 教材原文 ----
+data.json
+.env
+.env.*
+*.local.json
+private/
+test-vault/
+*.pdf
+*.epub
+!docs/**/*.pdf
+
+# ---- Obsidian / 编辑器 ----
+.obsidian/
+.trash/
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# DSH 文件工具留下的临时锁文件
+.dsh-ops-update-*.lock
