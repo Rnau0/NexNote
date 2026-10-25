@@ -251,3 +251,41 @@ PDF 层**不要改卡片结构**，只负责把坐标写进 `anchor.rects`（`An
 ---
 
 交接完成，DSH Web 侧停止开发。后续由 DSH TUI 接手。
+
+---
+
+## 附：独立复核记录（DSH Web 会话，2026-10-25 16:57）
+
+**复核缘由**：本文件由另一个 DSH 会话于 16:55:48 写入、16:56:05 提交（`0b3b370`）。
+为保证交接内容可信，本会话在停止开发前对仓库状态与构建测试做了独立复核，不覆盖上文任何内容。
+
+**复核命令**
+
+```bash
+cd E:/NexNote
+bash scripts/verify.sh      # = npm run typecheck → npm test → npm run build
+```
+
+**复核结果（与上文 §7 完全一致）**
+
+| 检查 | 实际结果 |
+| --- | --- |
+| `tsc --noEmit` | 0 错误 |
+| `vitest run` | 7 个文件 / **65 用例全部通过**，耗时 2.25 s（16:56:11） |
+| esbuild 生产构建 | 成功，`main.js` **52,093** 字节 |
+| `manifest.json` / `styles.css` | 317 / 13,111 字节 |
+| 依赖版本 | obsidian 1.14.4、esbuild 0.24.2、typescript 5.9.3、vitest 3.2.7、@types/node 22.20.5、builtin-modules 3.3.0、tslib 2.8.1 |
+| 运行时 | Node v24.16.0、npm 11.13.0 |
+| 代码量 | `src/` 3,206 行、`test/` 1,155 行、`styles.css` 633 行、跟踪文件 50 个（含本文件） |
+
+**Git 状态（复核时）**
+
+- `HEAD = 0b3b370`，分支 `feature/dsh-bootstrap`
+- `main = 8396aa6 = origin/main`，**未被改动、未合并**
+- 无未提交改动、无 stash、无 `.git/*.lock`（无并发 git 操作）
+- **未执行推送，也未 force push**（凭据仍归用户）
+
+**一处无法确认的项**：复核时 `git ls-remote` 连接 `github.com:443` 超时（21 s），
+因此远端分支状态未能实测，仍按 §1「尚未推送」为准。
+
+**结论**：阶段一交付物可用；§4（剩余任务）与 §9（已知问题）的清单依然成立，无需修正。
